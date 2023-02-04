@@ -6,72 +6,8 @@
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css" rel="stylesheet">
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js"></script>
-<style>
+<link rel="stylesheet" href="./main.css">
 
-body { margin: 0;padding: 0;}
-#map { position: absolute; top: 0; bottom: 0; width: 100%; }
-.marker {
-  background-image: url('mapbox-marker-icon-20px-red.png');
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-#title{
-    position: sticky;
-    top: 0px;
-    z-index: 10;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-}
-
-
-nav{
-    display: flex;
-    justify-content: space-evenly;
-    background-color: #333;
-    padding: 12px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100vw;
-    border-radius: 14px;
-}
-
-.nav-item{
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: white;
-  padding: 12px 16px;
-  border-radius: 50px;
-  background-color: rgba(255, 255, 255, 0);
-}
-
-.nav-item span{
-  width: 0;
-  overflow: hidden;
-}
-
-.nav-item:focus{
-  text-decoration: none;
-  color: white;
-  background-color: rgba(255, 255, 255, 0.2);
-  transition: .2s;
-}
-
-.nav-item:focus span{
-  width: 100%;
-  margin-left: 8px;
-  transition: .2s;
-}
-
-*:focus{
-  outline: none;
-  border: none;
-}
-</style>
 </head>
 <body>
     <!-- helo -->
@@ -97,6 +33,7 @@ nav{
           </svg></i><span>Profile</span>
         </a>
     </nav>    
+<script src="./data.js"></script>
 <script>
     
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2hhbmV5b2siLCJhIjoiY2xkcHBzbHJyMDdiNjN4bXl5bDcxdGQ5eSJ9.C5SQ8D5SNVerSjMeboGgiw';
@@ -107,46 +44,29 @@ const map = new mapboxgl.Map({
   zoom: 3
 });
 
-const geojson = {
-  type: 'FeatureCollection',
-  features: [
-    {
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [-77.032, 38.913]
-      },
-      properties: {
-        title: 'Mapbox',
-        description: 'Washington, D.C.'
-      }
-    },
-    {
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [-122.414, 37.776]
-      },
-      properties: {
-        title: 'Mapbox',
-        description: 'San Francisco, California'
-      }
-    }
-  ]
-};
 // add markers to map
 for (const feature of geojson.features) {
   // create a HTML element for each feature
   const el = document.createElement('div');
-  el.className = 'marker';
-
+  el.className = `marker`;
+  el.setAttribute("id",`${feature.category}`);
   // make a marker for each feature and add to the map
-  new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).addTo(map);
+  new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates)
+  .setPopup(
+    new mapboxgl.Popup({ offset: 25 }) // add popups
+      .setHTML(
+        `<h3>${feature.properties.name}</h3>
+        <p>${feature.properties.description}</p>`
+      )
+  )
+  .addTo(map);
 }
 
-feather.replace();
 
+//navbar js
+feather.replace();
 document.querySelector(".nav-item").focus();
+
 </script>
 </body>
 </html>
