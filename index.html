@@ -7,25 +7,145 @@
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css" rel="stylesheet">
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js"></script>
 <style>
-body { margin: 0; padding: 0; }
+
+body { margin: 0;padding: 0;}
 #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+.marker {
+  background-image: url('mapbox-marker-icon-20px-red.png');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+#title{
+    position: sticky;
+    top: 0px;
+    z-index: 10;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+
+nav{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #333;
+    padding: 12px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    border-radius: 14px;
+}
+
+.nav-item{
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.nav-item span{
+  width: 0;
+  overflow: hidden;
+}
+
+.nav-item:focus{
+  text-decoration: none;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: .2s;
+}
+
+.nav-item:focus span{
+  width: 100%;
+  margin-left: 8px;
+  transition: .2s;
+}
+
+*:focus{
+  outline: none;
+  border: none;
+}
 </style>
 </head>
 <body>
-<div id="map"></div>
+    <h1 id="title">StrEat</h1>
+    <div id="map"></div>
+    <nav>
+        <a class="nav-item" href="#">
+          <i data-feather="home"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+          </svg></i><span>Feed</span>
+        </a>
+        
+        <a class="nav-item" href="#">
+          <i data-feather="activity"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg></i><span>Search</span>
+        </a>
+        
+        <a class="nav-item" href="#">
+          <i data-feather="message-square"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+          </svg></i><span>Profile</span>
+        </a>
+    </nav>    
 <script>
-	// TO MAKE THE MAP APPEAR YOU MUST
-	// ADD YOUR ACCESS TOKEN FROM
-	// https://account.mapbox.com
-	mapboxgl.accessToken = 'pk.eyJ1Ijoic2hhbmV5b2siLCJhIjoiY2xkcHBzbHJyMDdiNjN4bXl5bDcxdGQ5eSJ9.C5SQ8D5SNVerSjMeboGgiw';
-    const map = new mapboxgl.Map({
-        container: 'map', // container ID
-        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-        style: 'mapbox://styles/shaneyok/cldpptzl1001o01o8br6upehu', // style URL
-        center: [-74.5, 40], // starting position [lng, lat]
-        zoom: 9 // starting zoom
-    });
-</script>
+    
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2hhbmV5b2siLCJhIjoiY2xkcHBzbHJyMDdiNjN4bXl5bDcxdGQ5eSJ9.C5SQ8D5SNVerSjMeboGgiw';
+const map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/light-v11',
+  center: [-96, 37.8],
+  zoom: 3
+});
 
+const geojson = {
+  type: 'FeatureCollection',
+  features: [
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [-77.032, 38.913]
+      },
+      properties: {
+        title: 'Mapbox',
+        description: 'Washington, D.C.'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [-122.414, 37.776]
+      },
+      properties: {
+        title: 'Mapbox',
+        description: 'San Francisco, California'
+      }
+    }
+  ]
+};
+// add markers to map
+for (const feature of geojson.features) {
+  // create a HTML element for each feature
+  const el = document.createElement('div');
+  el.className = 'marker';
+
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).addTo(map);
+}
+
+feather.replace();
+
+document.querySelector(".nav-item").focus();
+</script>
 </body>
 </html>
