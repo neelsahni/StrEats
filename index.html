@@ -13,6 +13,7 @@
     <h1 id="title">StrEat</h1>
     
     <div id="map"></div>
+    
     <div>
         <h4 id="heatmapword">HeatMap:</h4><input type="checkbox" id="heatmaptoggle" onclick="redirectPage()">
     </div>
@@ -37,10 +38,68 @@
           </svg></i><span>Profile</span>
         </a>
     </nav>    
+    <div id="feed">
+        <div class="header">
+            <h3 style="background-color: #06C167; color: #3c3c3c; padding: 20px; text-align: center; font-size: 29px; height: 32px; line-height: 32px; font-family: Arial, Helvetica, sans-serif; border-radius: 25px;margin: 0 0 30px 0;position: fixed;">HOT PLACES NEAR YOU</h3>
+        </div>
+        <div class="container">
+            <div class="box" style="margin-top: 80px;">
+            <img class="image" src="images/tacos.jpg" alt="Image">
+            <!-- <p class="text">Los Altos Tacos</p> -->
+            <div class="text">
+                <h3><b>Los Altos Tacos</b></h3>
+                <p>Chef's Recommendation: Cabeza tacos, Asada Fries, Vampiro</p>
+                <p style="font-size: 24px;">0.2 miles</p>
+            </div>
+            </div>
+            <div class="box">
+            <img class="image" src="images/clothes.jpg" alt="Image">
+            <div class="text">
+                <h3><b>Martha's Clothes Stand</b></h3>
+                <p>New Seasonal Sweaters, Scrafs, and Sacks</p>
+                <p style="font-size: 24px;">0.2 miles</p>
+            </div>
+            </div>
+            <div class="box">
+            <img class="image" src="images/skewers.jpg" alt="Image">
+            <div class="text">
+                <h3><b>Thai Skewers</b></h3>
+                <p>Limited Time Satay Shrimp Skewers!</p>
+                <p style="font-size: 24px;">0.5 miles</p>
+            </div>
+            </div>
+            <div class="box">
+            <img class="image" src="images/streetdogs.jpg" alt="Image">
+            <div class="text">
+                <h3><b>34th LA Streetdogs</b></h3>
+                <p>Finest Streetdogs in the Greater LA Metropolitan Area</p>
+                <p style="font-size: 24px;">1.2 miles</p>
+            </div>
+            </div>
+            <div class="box">
+            <img class="image" src="images/jewlery.jpg" alt="Image">
+            <div class="text">
+                <h3><b>Silver Jewlery</b></h3>
+                <p>Artisanal Jewlery & Healing Crystals</p>
+                <p style="font-size: 24px;">1.6 miles</p>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    
 <script src="./data.js"></script>
 <script>
+    var feedpop = false;
     function x(){
-        console.log("works");
+        if(!feedpop){
+            // make the margin-top 0 with smooth transition
+            document.getElementById("feed").style.marginTop = "0";
+        } else {
+            // make the margin-top 100vh with smooth transition
+            document.getElementById("feed").style.marginTop = "100vh";
+        }
+        feedpop = !feedpop;
     }
 function redirectPage(){
     if(document.getElementById("heatmaptoggle").checked==true){
