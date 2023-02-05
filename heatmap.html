@@ -6,6 +6,8 @@
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css" rel="stylesheet">
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js"></script>
+
+<link rel="stylesheet" href="./main.css">
 <style>
 
 body { margin: 0;padding: 0;}
@@ -77,6 +79,9 @@ nav{
     <!-- helo -->
     <h1 id="title">StrEat</h1>
     <div id="map"></div>
+    <div>
+        <h4 id="heatmapword">HeatMap:</h4><input type="checkbox" id="heatmaptoggle" checked onclick="redirectPage()">
+    </div>
     <nav>
         <a class="nav-item" href="#">
           <i data-feather="home"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
@@ -104,8 +109,8 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoic2hhbmV5b2siLCJhIjoiY2xkcHBzbHJyMDdiNjN4bXl5b
 const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/light-v11',
-  center: [-118.24, 34.05],
-  zoom: 12
+  center: [-118.289212, 34.0204],
+  zoom: 13.0
 });
 
 map.on('load', () => {
@@ -242,7 +247,7 @@ map.addLayer(
 );
 });
 
-
+/* 
 const geojson = {
   type: 'FeatureCollection',
   features: [
@@ -269,7 +274,7 @@ const geojson = {
       }
     }
   ]
-};
+}; */
 
 // // add markers to map
 // for (const feature of geojson.features) {
@@ -284,5 +289,13 @@ const geojson = {
 
 document.querySelector(".nav-item").focus();
 </script>
+
+<script>
+  function redirectPage(){
+      if(document.getElementById("heatmaptoggle").checked==false){
+          window.location.href="./index.html"
+      }
+  }
+  </script>
 </body>
 </html>

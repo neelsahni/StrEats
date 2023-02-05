@@ -72,7 +72,7 @@ const geojson = {
           },
           "properties":{
              "name":"Doughnuts",
-             "description":"We made a donum with a coockie dough inside. Try out our new kinds of donuts!"
+             "description":"We made a donut with a coockie dough inside. Try out our new kinds of donuts!"
           },
           "imgs":{
             "mainimg": "./donutmainimg.jpeg",
