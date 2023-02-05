@@ -12,7 +12,7 @@ const geojson = {
           },
           "properties":{
              "name":"Stone Ring",
-             "description":"all the rings are handmade. I can also make a certain ring when asked. Come find artistic jewelries!"
+             "description":"All the rings are handmade. I can also make a certain ring when asked. Come find artistic jewelries!"
           },
           "imgs":{
             "mainimg": "./jewlery.jpg",
@@ -32,7 +32,7 @@ const geojson = {
           },
           "properties":{
              "name":"Taco Stop",
-             "description":"We got great variety of tacos from beef, pork, and chiicken., and tofu. Try out our freshly made Tacos!"
+             "description":"We got great variety of tacos from beef, pork, chicken, and tofu. Try out our freshly made Tacos!"
           },
           "imgs":{
             "mainimg": "./tacos.jpg",
@@ -52,7 +52,7 @@ const geojson = {
           },
           "properties":{
              "name":"Cold-break",
-             "description":"we got some ice creams for you to grab while waiting to get in line for the basketball game. $2 a piece!"
+             "description":"We got some ice creams for you to grab while waiting to get in line for the basketball game. $2 a piece!"
           },
           "imgs":{
             "mainimg": "./icecreammainimg.jpeg",
@@ -72,7 +72,7 @@ const geojson = {
           },
           "properties":{
              "name":"Doughnuts",
-             "description":"We made a donut with a coockie dough inside. Try out our new kinds of donuts!"
+             "description":"We made a donut with a cockie dough inside. Try out our new kinds of donuts!"
           },
           "imgs":{
             "mainimg": "./donutmainimg.jpeg",
@@ -92,7 +92,7 @@ const geojson = {
           },
           "properties":{
              "name":"J's Grill and Kebab",
-             "description":"We sell Kebab and many other grilled items such as hamberger. Come get some food!"
+             "description":"We sell Kebab and many other grilled items such as hamburger. Come get some food!"
           },
           "imgs":{
             "mainimg": "./kebabmainimg.jpeg",
