@@ -4,46 +4,6 @@ const geojson = {
        {
           "type":"Feature",
           "geometry":{
-             "type":"Point",
-             "coordinates":[
-                -77.032,
-                38.913
-             ]
-          },
-          "properties":{
-             "title":"Mapbox",
-             "description":"Washington, D.C."
-          },
-          "imgs":{
-            "mainimg": "./tacos.jpg",
-            "menuimg": [],
-            "menudesc": [],
-          },
-          "category":"food"
-       },
-       {
-          "type":"Feature",
-          "geometry":{
-             "type":"Point",
-             "coordinates":[
-                -122.414,
-                37.776
-             ]
-          },
-          "properties":{
-             "title":"Mapbox",
-             "description":"San Francisco, California"
-          },
-          "imgs":{
-            "mainimg": "./tacos.jpg",
-            "menuimg": [],
-            "menudesc": [],
-          },
-          "category":"food"
-       },
-       {
-          "type":"Feature",
-          "geometry":{
              "coordinates":[
                 -118.2800437480451,
                 34.0220331857726
@@ -56,8 +16,8 @@ const geojson = {
           },
           "imgs":{
             "mainimg": "./jewlery.jpg",
-            "menuimg": [],
-            "menudesc": [],
+            "menuimg": ['ring1.png', 'ring2.png', 'ring3.png'],
+            "menuname": ['Onyx Ring', 'Ruby Ring', 'Lapis Lazuli Ring'],
           },
           "category":"jewelry"
        },
@@ -76,8 +36,8 @@ const geojson = {
           },
           "imgs":{
             "mainimg": "./tacos.jpg",
-            "menuimg": [],
-            "menudesc": [],
+            "menuimg": ['taco1.webp', 'taco2.webp', 'taco3.webp'],
+            "menuname": ['Grilled Chicken Taco', 'Chicken Tikka Taco', 'Carnitas Taco'],
           },
           "category":"taco"
        },
@@ -96,8 +56,8 @@ const geojson = {
           },
           "imgs":{
             "mainimg": "./icecreammainimg.jpeg",
-            "menuimg": [],
-            "menudesc": [],
+            "menuimg": ['./icecream1.png', './icecream2.png', './icecream3.png'],
+            "menuname": ['Chocalate Chip Ice Cream', 'Mint Chocalate Chip', 'Vanilla'],
           },
           "category":"icecream"
        },
@@ -116,8 +76,8 @@ const geojson = {
           },
           "imgs":{
             "mainimg": "./donutmainimg.jpeg",
-            "menuimg": [],
-            "menudesc": [],
+            "menuimg": ['donut1.jpeg', 'donut2.jpeg', 'donut3.jpeg'],
+            "menuname": ['valentine spinkle 1', 'valentien sprinkle 2', 'crumb cake'],
           },
           "category":"donut"
        },
@@ -136,8 +96,8 @@ const geojson = {
           },
           "imgs":{
             "mainimg": "./kebabmainimg.jpeg",
-            "menuimg": [],
-            "menudesc": [],
+            "menuimg": ['./kebab1.jpeg', './kebab2.jpeg', './kebab3.jpeg'],
+            "menuname": ['Shish Kebab Plate', 'Lamb Shish Kebab Plate', 'Salmon Kebab Plate'],
           },
           "category":"Kebab"
        }
