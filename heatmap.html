@@ -8,72 +8,7 @@
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js"></script>
 
 <link rel="stylesheet" href="./main.css">
-<style>
 
-body { margin: 0;padding: 0;}
-#map { position: absolute; top: 0; bottom: 0; width: 100%; }
-.marker {
-  background-image: url('mapbox-marker-icon-20px-red.png');
-  background-size: cover;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-#title{
-    position: sticky;
-    top: 0px;
-    z-index: 10;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-}
-
-
-nav{
-    display: flex;
-    justify-content: space-evenly;
-    background-color: #333;
-    padding: 12px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100vw;
-    border-radius: 14px;
-}
-
-.nav-item{
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: white;
-  padding: 12px 16px;
-  border-radius: 50px;
-  background-color: rgba(255, 255, 255, 0);
-}
-
-.nav-item span{
-  width: 0;
-  overflow: hidden;
-}
-
-.nav-item:focus{
-  text-decoration: none;
-  color: white;
-  background-color: rgba(255, 255, 255, 0.2);
-  transition: .2s;
-}
-
-.nav-item:focus span{
-  width: 100%;
-  margin-left: 8px;
-  transition: .2s;
-}
-
-*:focus{
-  outline: none;
-  border: none;
-}
-</style>
 </head>
 <body>
     <!-- helo -->
@@ -83,7 +18,7 @@ nav{
         <h4 id="heatmapword">HeatMap:</h4><input type="checkbox" id="heatmaptoggle" checked onclick="redirectPage()">
     </div>
     <nav>
-        <a class="nav-item" href="#">
+        <a onclick="x();" class="nav-item" href="#">
           <i data-feather="home"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
             <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
           </svg></i><span>Feed</span>
@@ -102,9 +37,67 @@ nav{
           </svg></i><span>Profile</span>
         </a>
     </nav>   
+    <div id="feed">
+      <div class="header">
+          <h3 style="background-color: #06C167; color: #3c3c3c; padding: 20px; text-align: center; font-size: 29px; height: 32px; line-height: 32px; font-family: Arial, Helvetica, sans-serif; border-radius: 25px;margin: 0 0 30px 0;position: fixed;">HOT PLACES NEAR YOU</h3>
+      </div>
+      <div class="container">
+          <div class="box" style="margin-top: 80px;">
+          <img class="image" src="images/tacos.jpg" alt="Image">
+          <!-- <p class="text">Los Altos Tacos</p> -->
+          <div class="text">
+              <h3><b>Los Altos Tacos</b></h3>
+              <p>Chef's Recommendation: Cabeza tacos, Asada Fries, Vampiro</p>
+              <p style="font-size: 24px;">0.2 miles</p>
+          </div>
+          </div>
+          <div class="box">
+          <img class="image" src="images/clothes.jpg" alt="Image">
+          <div class="text">
+              <h3><b>Martha's Clothes Stand</b></h3>
+              <p>New Seasonal Sweaters, Scrafs, and Sacks</p>
+              <p style="font-size: 24px;">0.2 miles</p>
+          </div>
+          </div>
+          <div class="box">
+          <img class="image" src="images/skewers.jpg" alt="Image">
+          <div class="text">
+              <h3><b>Thai Skewers</b></h3>
+              <p>Limited Time Satay Shrimp Skewers!</p>
+              <p style="font-size: 24px;">0.5 miles</p>
+          </div>
+          </div>
+          <div class="box">
+          <img class="image" src="images/streetdogs.jpg" alt="Image">
+          <div class="text">
+              <h3><b>34th LA Streetdogs</b></h3>
+              <p>Finest Streetdogs in the Greater LA Metropolitan Area</p>
+              <p style="font-size: 24px;">1.2 miles</p>
+          </div>
+          </div>
+          <div class="box">
+          <img class="image" src="images/jewlery.jpg" alt="Image">
+          <div class="text">
+              <h3><b>Silver Jewlery</b></h3>
+              <p>Artisanal Jewlery & Healing Crystals</p>
+              <p style="font-size: 24px;">1.6 miles</p>
+          </div>
+          </div>
+      </div>
+  </div>
 <script src="./heatmapData/heatMapData.js"></script>
 <script>
-    
+    var feedpop = false;
+    function x(){
+        if(!feedpop){
+            // make the margin-top 0 with smooth transition
+            document.getElementById("feed").style.marginTop = "0";
+        } else {
+            // make the margin-top 100vh with smooth transition
+            document.getElementById("feed").style.marginTop = "100vh";
+        }
+        feedpop = !feedpop;
+    }
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2hhbmV5b2siLCJhIjoiY2xkcHBzbHJyMDdiNjN4bXl5bDcxdGQ5eSJ9.C5SQ8D5SNVerSjMeboGgiw';
 const map = new mapboxgl.Map({
   container: 'map',
