@@ -90,22 +90,158 @@ nav{
           </svg></i><span>Search</span>
         </a>
         
-        <a class="nav-item" href="./heatmap.html">
+        <a class="nav-item" href="#">
           <i data-feather="message-square"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
             <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
           </svg></i><span>Profile</span>
         </a>
-    </nav>    
+    </nav>   
+<script src="./heatmapData/heatMapData.js"></script>
 <script>
     
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2hhbmV5b2siLCJhIjoiY2xkcHBzbHJyMDdiNjN4bXl5bDcxdGQ5eSJ9.C5SQ8D5SNVerSjMeboGgiw';
 const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/light-v11',
-  center: [-96, 37.8],
-  zoom: 3
+  center: [-118.24, 34.05],
+  zoom: 12
 });
+
+map.on('load', () => {
+// Add a geojson point source.
+// Heatmap layers also work with a vector tile source.
+map.addSource('heatMapData', {
+'type': 'geojson',
+'data': heatMapJson
+});
+ 
+map.addLayer(
+{
+'id': 'earthquakes-heat',
+'type': 'heatmap',
+'source': 'heatMapData',
+'maxzoom': 9,
+'paint': {
+// Increase the heatmap weight based on frequency and property magnitude
+// 'heatmap-weight': [
+// 'interpolate',
+// ['linear'],
+// ['get', 'mag'],
+// 0,
+// 0,
+// 6,
+// 1
+// ],
+// Increase the heatmap color weight weight by zoom level
+// heatmap-intensity is a multiplier on top of heatmap-weight
+'heatmap-intensity': [
+'interpolate',
+['linear'],
+['zoom'],
+0,
+1,
+9,
+3
+],
+// Color ramp for heatmap.  Domain is 0 (low) to 1 (high).
+// Begin color ramp at 0-stop with a 0-transparancy color
+// to create a blur-like effect.
+'heatmap-color': [
+'interpolate',
+['linear'],
+['heatmap-density'],
+0,
+'rgba(195,224,189,0)',
+0.2,
+'rgb(153,229,136)',
+0.4,
+'rgb(129,230,106)',
+0.6,
+'rgb(105,232,77)',
+0.8,
+'rgb(77,195,51)',
+1,
+'rgb(40,115,24)'
+],
+// Adjust the heatmap radius by zoom level
+'heatmap-radius': [
+'interpolate',
+['linear'],
+['zoom'],
+0,
+2,
+9,
+20
+],
+// Transition from heatmap to circle layer by zoom level
+'heatmap-opacity': [
+'interpolate',
+['linear'],
+['zoom'],
+7,
+1,
+9,
+0
+]
+}
+},
+'waterway-label'
+);
+ 
+map.addLayer(
+{
+'id': 'earthquakes-point',
+'type': 'circle',
+'source': 'heatMapData',
+'minzoom': 7,
+'paint': {
+// Size circle radius by earthquake magnitude and zoom level
+'circle-radius': [
+'interpolate',
+['linear'],
+['zoom'],
+7,
+['interpolate', ['linear'], ['get', 'mag'], 1, 1, 6, 4],
+16,
+['interpolate', ['linear'], ['get', 'mag'], 1, 5, 6, 20]
+],
+// Color circle by earthquake magnitude
+'circle-color': [
+'interpolate',
+['linear'],
+['get', 'mag'],
+1,
+'rgba(195,224,189,0)',
+2,
+'rgb(153,229,136)',
+3,
+'rgb(129,230,106)',
+4,
+'rgb(105,232,77)',
+5,
+'rgb(77,195,51)',
+6,
+'rgb(40,115,24)'
+],
+'circle-stroke-color': 'white',
+'circle-stroke-width': 0,
+// Transition from heatmap to circle layer by zoom level
+'circle-opacity': [
+'interpolate',
+['linear'],
+['zoom'],
+7,
+0,
+20,
+1
+]
+}
+},
+'waterway-label'
+);
+});
+
 
 const geojson = {
   type: 'FeatureCollection',
@@ -134,17 +270,17 @@ const geojson = {
     }
   ]
 };
-// add markers to map
-for (const feature of geojson.features) {
-  // create a HTML element for each feature
-  const el = document.createElement('div');
-  el.className = 'marker';
 
-  // make a marker for each feature and add to the map
-  new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).addTo(map);
-}
+// // add markers to map
+// for (const feature of geojson.features) {
+//   // create a HTML element for each feature
+//   const el = document.createElement('div');
+//   el.className = 'marker';
 
-feather.replace();
+//   // make a marker for each feature and add to the map
+//   new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).addTo(map);
+// }
+// feather.replace();
 
 document.querySelector(".nav-item").focus();
 </script>
