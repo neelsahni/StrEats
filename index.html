@@ -118,6 +118,62 @@
     </div>
 <script src="./data.js"></script>
 <script>
+
+function geojsonFeatureAdder(map,feature){
+
+// create a HTML element for each feature
+const el = document.createElement('div');
+el.className = `marker`;
+el.setAttribute("id",`${feature.category}`);
+// make a marker for each feature and add to the map
+new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates)
+.setPopup(
+  new mapboxgl.Popup({ offset: 25 }) // add popups
+    .setHTML(
+      `<div style="display: flex; justify-content: center;">
+          <img src="${feature.imgs.mainimg}" alt="" style="border-radius: 15px;max-width: 120px;margin: 0.5rem 1rem;">
+          <h1 style="text-align: center; display:flex; ">${feature.properties.name}</h1>
+      </div>
+      <p>${feature.properties.description}</p>
+      <div class="popupmenu" style="display: flex; justify-content: center; align-items: center;">
+          <img src="${feature.imgs.menuimg[0]}" alt="menuimg" style="border-radius: 15px;max-width: 120px;margin: 0.5rem 1rem;>
+          <h2><p class="popupmenudesc">${feature.imgs.menuname[0]}</p></h2>
+      </div>
+      <div class="popupmenu" style="display: flex; justify-content: center; align-items: center;">
+          <img src="${feature.imgs.menuimg[1]}" alt="menuimg" style="border-radius: 15px;max-width: 120px;margin: 0.5rem 1rem;>
+          <h2><p class="popupmenudesc">${feature.imgs.menuname[1]}</p></h2>
+      </div>
+      <div class="popupmenu" style="display: flex; justify-content: center; align-items: center;">
+          <img src="${feature.imgs.menuimg[2]}" alt="menuimg" style="border-radius: 15px;max-width: 120px;margin: 0.5rem 1rem;>
+          <h2><p class="popupmenudesc">${feature.imgs.menuname[2]}</p></h2>
+      </div>`
+      
+    )
+)
+.addTo(map);
+}
+
+</script>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2hhbmV5b2siLCJhIjoiY2xkcHBzbHJyMDdiNjN4bXl5bDcxdGQ5eSJ9.C5SQ8D5SNVerSjMeboGgiw';
+const map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/light-v11',
+  center: [-118.289212, 34.0204],
+  zoom: 13.0
+});
+
+// add markers to map
+for (const feature of geojson.features) {
+  geojsonFeatureAdder(map,feature);
+}
+
+
+//navbar js
+document.querySelector(".nav-item").focus();
+
+</script>
+<script>
     var feedpop = false;
     var addlocpop = false;
     function x(){
@@ -148,8 +204,8 @@ let newJson={
                 "type":"Feature",
                 "geometry":{
                     "coordinates":[
-                        -118.289212,
-                        34.0204
+                        -118.2933028,
+                        34.01076022
                     ],
                     "type":"Point"
                 },
@@ -173,57 +229,9 @@ let newJson={
                 newJson.properties.description=description;
                 newJson.category=category;
                 geojson.features.push(newJson);
+                geojsonFeatureAdder(map,newJson);
                 
               }
-</script>
-<script>
-    
-mapboxgl.accessToken = 'pk.eyJ1Ijoic2hhbmV5b2siLCJhIjoiY2xkcHBzbHJyMDdiNjN4bXl5bDcxdGQ5eSJ9.C5SQ8D5SNVerSjMeboGgiw';
-const map = new mapboxgl.Map({
-  container: 'map',
-  style: 'mapbox://styles/mapbox/light-v11',
-  center: [-118.289212, 34.0204],
-  zoom: 13.0
-});
-
-// add markers to map
-for (const feature of geojson.features) {
-  // create a HTML element for each feature
-  const el = document.createElement('div');
-  el.className = `marker`;
-  el.setAttribute("id",`${feature.category}`);
-  // make a marker for each feature and add to the map
-  new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates)
-  .setPopup(
-    new mapboxgl.Popup({ offset: 25 }) // add popups
-      .setHTML(
-        `<div style="display: flex; justify-content: center;">
-            <img src="${feature.imgs.mainimg}" alt="" style="border-radius: 15px;max-width: 120px;margin: 0.5rem 1rem;">
-            <h1 style="text-align: center; display:flex; ">${feature.properties.name}</h1>
-        </div>
-        <p>${feature.properties.description}</p>
-        <div class="popupmenu" style="display: flex; justify-content: center; align-items: center;">
-            <img src="${feature.imgs.menuimg[0]}" alt="menuimg" style="border-radius: 15px;max-width: 120px;margin: 0.5rem 1rem;>
-            <h2><p class="popupmenudesc">${feature.imgs.menuname[0]}</p></h2>
-        </div>
-        <div class="popupmenu" style="display: flex; justify-content: center; align-items: center;">
-            <img src="${feature.imgs.menuimg[1]}" alt="menuimg" style="border-radius: 15px;max-width: 120px;margin: 0.5rem 1rem;>
-            <h2><p class="popupmenudesc">${feature.imgs.menuname[1]}</p></h2>
-        </div>
-        <div class="popupmenu" style="display: flex; justify-content: center; align-items: center;">
-            <img src="${feature.imgs.menuimg[2]}" alt="menuimg" style="border-radius: 15px;max-width: 120px;margin: 0.5rem 1rem;>
-            <h2><p class="popupmenudesc">${feature.imgs.menuname[2]}</p></h2>
-        </div>`
-        
-      )
-  )
-  .addTo(map);
-}
-
-
-//navbar js
-document.querySelector(".nav-item").focus();
-
 </script>
 
 </body>
