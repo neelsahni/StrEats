@@ -2,9 +2,9 @@
 <html>
   <head>
     <style>
-        body{
-            background-color: #757575;
-        }
+      body{
+        background-color: #dddddd;
+      }
       .container {
         display: flex;
         flex-direction: column;
@@ -21,8 +21,15 @@
         background-color: rgb(255, 254, 248);
         box-shadow: 8px 8px 16px #a2a2a2;
         border-radius: 25px;
+        transition: all 0.5s ease-in-out;
+        margin: 0 1rem 40px 1rem;
       }
-      
+      .box:hover {
+        transform: scale(1.1);
+        transform: scaleX(1.05);
+      }
+     
+
       .image {
         border-radius: 15px;
         width: 360px;
@@ -38,9 +45,17 @@
         color:rgb(22, 2, 2);
       }
     </style>
+    <!-- <script>
+      document.addEventListener("DOMContentLoaded", function() {
+      const boxes = document.querySelectorAll(".box");
+      boxes.forEach(function(box) {
+        box.classList.add("show");
+      });
+    });
+    </script> -->
   </head>
   <div class="header">
-        <p style="background-color: red; color: white; padding: 20px; text-align: center; font-size: 48px; height: 32px; line-height: 32px; font-family: Arial, Helvetica, sans-serif; border-radius: 25px"><b>HOT PLACES NEAR YOU</b></p>
+        <p style="background-color: #06C167; color: #3c3c3c; padding: 20px; text-align: center; font-size: 48px; height: 32px; line-height: 32px; font-family: Arial, Helvetica, sans-serif; border-radius: 25px"><b>HOT PLACES NEAR YOU</b></p>
   </div>
   <body>
     
@@ -51,7 +66,7 @@
         <div class="text">
             <h3><b>Los Altos Tacos</b></h3>
             <p>Chef's Recommendation: Cabeza tacos, Asada Fries, Vampiro</p>
-            <p style="font-size: 18px;">Distance: 0.2 miles</p>
+            <p style="font-size: 24px;">0.2 miles</p>
         </div>
       </div>
       <div class="box">
@@ -59,7 +74,7 @@
         <div class="text">
             <h3><b>Martha's Clothes Stand</b></h3>
             <p>New Seasonal Sweaters, Scrafs, and Sacks</p>
-            <p style="font-size: 18px;">Distance: 0.2 miles</p>
+            <p style="font-size: 24px;">0.2 miles</p>
         </div>
       </div>
       <div class="box">
@@ -67,7 +82,7 @@
         <div class="text">
             <h3><b>Thai Skewers</b></h3>
             <p>Limited Time Satay Shrimp Skewers!</p>
-            <p style="font-size: 18px;">Distance: 0.5 miles</p>
+            <p style="font-size: 24px;">0.5 miles</p>
         </div>
       </div>
       <div class="box">
@@ -75,7 +90,7 @@
         <div class="text">
             <h3><b>34th LA Streetdogs</b></h3>
             <p>Finest Streetdogs in the Greater LA Metropolitan Area</p>
-            <p style="font-size: 18px;">Distance: 1.2 miles</p>
+            <p style="font-size: 24px;">1.2 miles</p>
         </div>
       </div>
       <div class="box">
@@ -83,7 +98,7 @@
         <div class="text">
             <h3><b>Silver Jewlery</b></h3>
             <p>Artisanal Jewlery & Healing Crystals</p>
-            <p style="font-size: 18px;">Distance: 1.6 miles</p>
+            <p style="font-size: 24px;">1.6 miles</p>
         </div>
       </div>
     </div>
