@@ -216,3 +216,18 @@ input[type="checkbox"] {
   .text h3,p {
     margin: 0 auto 0 auto;
   }
+
+  #addlocform{
+    top: 0;
+    position: sticky;
+    z-index: 10;
+    margin: 70px 0 0 0;
+    /* margin: -126vh 10vw 0px 10vw; */
+    background-color: #dddddd;
+    border-radius: 14px;
+    box-shadow: 0 0 20px black;
+    padding: 0.5rem 1rem 1rem 1rem;
+
+    font-family: sans-serif;
+    transition: margin 0.9s ease-in-out;
+  }

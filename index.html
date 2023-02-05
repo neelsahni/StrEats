@@ -5,6 +5,7 @@
 <title>Display a map on a webpage</title>
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css" rel="stylesheet">
+
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js"></script>
 <link rel="stylesheet" href="./main.css">
 
@@ -25,7 +26,7 @@
           </svg></i><span>Feed</span>
         </a>
         
-        <a class="nav-item" href="#">
+        <a onclick="addloc();" class="nav-item" href="#">
             <i data-feather="message-square"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
               <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
               <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
@@ -88,9 +89,37 @@
     </div>
 
     
+    <div id="addlocform">
+        <form >
+          <h2>Add your shop</h2>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="first">Shop Name</label>
+                <input type="text" class="form-control" placeholder="" id="shopName">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="last">Description</label>
+                <input type="text" class="form-control" placeholder="" id="description">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="company">Category</label>
+                <input type="text" class="form-control" placeholder="" id="category">
+              </div>
+            </div>
+          <button type="button" onclick="addShop()" class="btn btn-primary" style="border-radius: 5px;">Submit</button>
+        </form>
+    </div>
 <script src="./data.js"></script>
 <script>
     var feedpop = false;
+    var addlocpop = false;
     function x(){
         if(!feedpop){
             // make the margin-top 0 with smooth transition
@@ -101,11 +130,51 @@
         }
         feedpop = !feedpop;
     }
-function redirectPage(){
-    if(document.getElementById("heatmaptoggle").checked==true){
-        window.location.href="./heatmap.html"
+    function redirectPage(){
+        if(document.getElementById("heatmaptoggle").checked==true){
+            window.location.href="./heatmap.html"
+        }
     }
-}
+    function addloc(){
+        if(!addlocpop){
+            document.getElementById("addlocform").style.margin = "-126vh 10vw 0px 10vw";
+        } else {
+            document.getElementById("addlocform").style.margin = "70px 0 0 0";
+        }
+        addlocpop = !addlocpop;
+    }
+
+let newJson={
+                "type":"Feature",
+                "geometry":{
+                    "coordinates":[
+                        -118.289212,
+                        34.0204
+                    ],
+                    "type":"Point"
+                },
+                "properties":{
+                    "name":"Stone Ring",
+                    "description":"all the rings are handmade. I can also make a certain ring when asked. Come find artistic jewelries!"
+                },
+                "imgs":{
+                    "mainimg": "./jewlery.jpg",
+                    "menuimg": ['ring1.png', 'ring2.png', 'ring3.png'],
+                    "menuname": ['Onyx Ring', 'Ruby Ring', 'Lapis Lazuli Ring'],
+                },
+                "category":"jewelry"
+            };
+
+              function addShop(){
+                let shopName=document.getElementById("shopName").value;
+                let category=document.getElementById("category").value;
+                let description=document.getElementById("description").value;
+                newJson.properties.name=shopName;
+                newJson.properties.description=description;
+                newJson.category=category;
+                geojson.features.push(newJson);
+                
+              }
 </script>
 <script>
     
