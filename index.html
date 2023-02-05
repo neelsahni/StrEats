@@ -55,8 +55,12 @@ for (const feature of geojson.features) {
   .setPopup(
     new mapboxgl.Popup({ offset: 25 }) // add popups
       .setHTML(
-        `<h3>${feature.properties.name}</h3>
-        <p>${feature.properties.description}</p>`
+        `<div style="display: flex; justify-content: center;">
+            <img src="${feature.imgs.mainimg}" alt="" style="border-radius: 15px;max-width: 120px;margin: 0.5rem 1rem;">
+            <h1 style="text-align: center; display: flex;align-items: center;word-break: break-all;">${feature.properties.name}</h1>
+        </div>
+        <p>${feature.properties.description}</p>
+        `
       )
   )
   .addTo(map);
@@ -68,5 +72,8 @@ feather.replace();
 document.querySelector(".nav-item").focus();
 
 </script>
+
+
+
 </body>
 </html>

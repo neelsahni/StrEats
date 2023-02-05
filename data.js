@@ -14,6 +14,11 @@ const geojson = {
              "title":"Mapbox",
              "description":"Washington, D.C."
           },
+          "imgs":{
+            "mainimg": "./tacos.jpg",
+            "menuimg": [],
+            "menudesc": [],
+          },
           "category":"food"
        },
        {
@@ -28,6 +33,11 @@ const geojson = {
           "properties":{
              "title":"Mapbox",
              "description":"San Francisco, California"
+          },
+          "imgs":{
+            "mainimg": "./tacos.jpg",
+            "menuimg": [],
+            "menudesc": [],
           },
           "category":"food"
        },
@@ -44,7 +54,11 @@ const geojson = {
              "name":"Stone Ring",
              "description":"all the rings are handmade. I can also make a certain ring when asked. Come find artistic jewelries!"
           },
-          "imgs":['/-kj[   q', '', ''],
+          "imgs":{
+            "mainimg": "./jewlery.jpg",
+            "menuimg": [],
+            "menudesc": [],
+          },
           "category":"jewelry"
        },
        {
@@ -59,6 +73,11 @@ const geojson = {
           "properties":{
              "name":"Taco Stop",
              "description":"We got great variety of tacos from beef, pork, and chiicken., and tofu. Try out our freshly made Tacos!"
+          },
+          "imgs":{
+            "mainimg": "./tacos.jpg",
+            "menuimg": [],
+            "menudesc": [],
           },
           "category":"taco"
        },
@@ -75,6 +94,11 @@ const geojson = {
              "name":"Cold-break",
              "description":"we got some ice creams for you to grab while waiting to get in line for the basketball game. $2 a piece!"
           },
+          "imgs":{
+            "mainimg": "./icecreammainimg.jpeg",
+            "menuimg": [],
+            "menudesc": [],
+          },
           "category":"icecream"
        },
        {
@@ -90,6 +114,11 @@ const geojson = {
              "name":"Doughnuts",
              "description":"We made a donum with a coockie dough inside. Try out our new kinds of donuts!"
           },
+          "imgs":{
+            "mainimg": "./donutmainimg.jpeg",
+            "menuimg": [],
+            "menudesc": [],
+          },
           "category":"donut"
        },
        {
@@ -104,6 +133,11 @@ const geojson = {
           "properties":{
              "name":"J's Grill and Kebab",
              "description":"We sell Kebab and many other grilled items such as hamberger. Come get some food!"
+          },
+          "imgs":{
+            "mainimg": "./kebabmainimg.jpeg",
+            "menuimg": [],
+            "menudesc": [],
           },
           "category":"Kebab"
        }
