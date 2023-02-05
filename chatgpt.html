@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Search Bar</title>
+    <style>
+      .search-container {
+        background-color: lightgray;
+        padding: 10px;
+      }
+      input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+      }
+      button[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        background-color: gray;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+
+  <body>
+    <header>
+      <h1>Search Bar</h1>
+    </header>
+    <main>
+        
+      <div class="search-container">
+            <form >
+          <input id="asd" type="text" placeholder="Search">
+
+          <button type="button"  onclick="myFunc()">SEARCH</button>
+        </form>
+      </div>
+
+
+      <div id="result">
+
+          <!-- Results will be displayed here -->
+          
+          
+      </div>
+
+    </main>
+  </body>
+
+
+  
+  <script src="./data.js"></script>
+  <script>
+
+function myFunc(){
+        
+        // console.log("hello");
+        var keyword = document.getElementById("asd").value;
+        // var res = document.getElementById("result");
+
+
+        // const div = document.createElement("result"); //instead of res line
+
+        // div.className = 'row';
+
+        // div.innerHTML = '<div style="display: flex; justify-content: center;"> <img src="${feature.imgs.mainimg}" alt="" style="border-radius: 15px;max-width: 120px;margin: 0.5rem 1rem;"> <h1 style="text-align: center; display:flex; ">${feature.properties.name}</h1<h2 style="text-align: right; display:flex; ">${feature.properties.category}</h1><p>${feature.properties.description}</p>';
+
+        for(const feature of geojson.features){
+            // console.log(keyword);
+            let additionstring = "";
+             //console.log(feature.properties.name + ' ' + feature.properties.description + ' ' + feature.imgs.menuname );
+            if(feature.properties.name.includes(keyword) || feature.properties.description.includes(keyword) || feature.imgs.menuname.includes(keyword)) {
+                 //console.log(feature.properties.name);
+                let divToAdd=document.createElement('div');
+
+                divToAdd.innerHTML = `
+                    <div style="display: flex; justify-content: center;">
+                        <div class="box">
+                        <img class="image" src="${feature.imgs.mainimg}" alt="${feature.properties.name}" style="border-radius: 20%;">
+                        <div class="text">
+                            <h3><b>${feature.properties.name}</b></h3>
+                            <p>${feature.properties.description}</p>
+                        </div>
+                        </div>
+                    </div>
+                    `;
+    </script>
+</html>
