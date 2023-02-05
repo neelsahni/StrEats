@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+        body{
+            background-color: #757575;
+        }
+      .container {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        overflow-y: scroll;
+      }
+      
+      .box {
+        display: flex;
+        flex-direction: row;
+        align-items: top;
+        padding: 36px;
+        margin-bottom: 40px;
+        background-color: rgb(255, 254, 248);
+        box-shadow: 8px 8px 16px #a2a2a2;
+        border-radius: 25px;
+      }
+      
+      .image {
+        border-radius: 15px;
+        width: 360px;
+        height: 360px;
+        margin-right: 32px;
+      }
+      
+      .text {
+        font-size: 40px;
+        font-family: Helvetica;
+        /* font-weight: bold; */
+        text-align: top;
+        color:rgb(22, 2, 2);
+      }
+    </style>
+  </head>
+  <div class="header">
+        <p style="background-color: red; color: white; padding: 20px; text-align: center; font-size: 48px; height: 32px; line-height: 32px; font-family: Arial, Helvetica, sans-serif; border-radius: 25px"><b>HOT PLACES NEAR YOU</b></p>
+  </div>
+  <body>
+    
+    <div class="container">
+      <div class="box">
+        <img class="image" src="images/tacos.jpg" alt="Image">
+        <!-- <p class="text">Los Altos Tacos</p> -->
+        <div class="text">
+            <h3><b>Los Altos Tacos</b></h3>
+            <p>Chef's Recommendation: Cabeza tacos, Asada Fries, Vampiro</p>
+            <p style="font-size: 18px;">Distance: 0.2 miles</p>
+        </div>
+      </div>
+      <div class="box">
+        <img class="image" src="images/clothes.jpg" alt="Image">
+        <div class="text">
+            <h3><b>Martha's Clothes Stand</b></h3>
+            <p>New Seasonal Sweaters, Scrafs, and Sacks</p>
+            <p style="font-size: 18px;">Distance: 0.2 miles</p>
+        </div>
+      </div>
+      <div class="box">
+        <img class="image" src="images/skewers.jpg" alt="Image">
+        <div class="text">
+            <h3><b>Thai Skewers</b></h3>
+            <p>Limited Time Satay Shrimp Skewers!</p>
+            <p style="font-size: 18px;">Distance: 0.5 miles</p>
+        </div>
+      </div>
+      <div class="box">
+        <img class="image" src="images/streetdogs.jpg" alt="Image">
+        <div class="text">
+            <h3><b>34th LA Streetdogs</b></h3>
+            <p>Finest Streetdogs in the Greater LA Metropolitan Area</p>
+            <p style="font-size: 18px;">Distance: 1.2 miles</p>
+        </div>
+      </div>
+      <div class="box">
+        <img class="image" src="images/jewlery.jpg" alt="Image">
+        <div class="text">
+            <h3><b>Silver Jewlery</b></h3>
+            <p>Artisanal Jewlery & Healing Crystals</p>
+            <p style="font-size: 18px;">Distance: 1.6 miles</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
