@@ -221,13 +221,19 @@ input[type="checkbox"] {
     top: 0;
     position: sticky;
     z-index: 10;
-    margin: 70px 0 0 0;
-    /* margin: -126vh 10vw 0px 10vw; */
+    margin: 120vh 0 0 0;
     background-color: #dddddd;
     border-radius: 14px;
     box-shadow: 0 0 20px black;
     padding: 0.5rem 1rem 1rem 1rem;
-
+    height: 160px;
     font-family: sans-serif;
     transition: margin 0.9s ease-in-out;
+  }
+
+  #searchengine{
+    position: sticky;
+    background-color: #dddddd;
+    border-radius: 14px;
+    transition: margin-top 0.8s cubic-bezier(0.4, 0, 1, 1);
   }

@@ -33,7 +33,7 @@
             </svg></i><span>Add Location</span>
         </a>
 
-        <a class="nav-item" href="#">
+        <a onclick="searcheng()" class="nav-item" href="#">
           <i data-feather="activity"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
           </svg></i><span>Search</span>
@@ -88,27 +88,6 @@
         </div>
     </div>
 
-<div style="position: sticky;
-margin-top: -100vh;
-background-color: aliceblue;">
-    <div class="search-container">
-        <form >
-        <input id="asd" type="text" placeholder="Search">
-
-        <button type="button"  onclick="myFunc()">Go!</button>
-        </form>
-    </div>
-
-
-    <div id="result">
-
-        <!-- Results will be displayed here -->
-        
-        
-    </div>
-</div>
-    
-    
     <div id="addlocform">
         <form >
           <h2>Add your shop</h2>
@@ -135,6 +114,22 @@ background-color: aliceblue;">
             </div>
           <button type="button" onclick="addShop()" class="btn btn-primary" style="border-radius: 5px;">Submit</button>
         </form>
+    </div>
+
+
+    <div id="searchengine">
+        <!-- style="position: sticky;
+        margin-top: -100vh;
+        background-color: aliceblue;" -->
+        <div class="search-container">
+            <form >
+            <input style="width: 60vw;margin: 2rem 0 2rem 2rem;" id="asd" type="text" placeholder="Search">
+            <button type="button"  onclick="myFunc()">Go!</button>
+            </form>
+        </div>
+
+        <div id="result">
+        </div>
     </div>
 <script src="./data.js"></script>
 <script>
@@ -174,28 +169,15 @@ new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates)
 }
 
 function myFunc(){
-        
-        // console.log("hello");
         var keyword = document.getElementById("asd").value;
-        // var res = document.getElementById("result");
-
-
-        // const div = document.createElement("result"); //instead of res line
-
-        // div.className = 'row';
-
-        // div.innerHTML = '<div style="display: flex; justify-content: center;"> <img src="${feature.imgs.mainimg}" alt="" style="border-radius: 15px;max-width: 120px;margin: 0.5rem 1rem;"> <h1 style="text-align: center; display:flex; ">${feature.properties.name}</h1<h2 style="text-align: right; display:flex; ">${feature.properties.category}</h1><p>${feature.properties.description}</p>';
-
         for(const feature of geojson.features){
             // console.log(keyword);
             let additionstring = "";
-             //console.log(feature.properties.name + ' ' + feature.properties.description + ' ' + feature.imgs.menuname );
             if(feature.properties.name.includes(keyword) || feature.properties.description.includes(keyword) || feature.imgs.menuname.includes(keyword)) {
-                 //console.log(feature.properties.name);
                 let divToAdd=document.createElement('div');
 
                 divToAdd.innerHTML = `
-                    <div style="display: flex; justify-content: center;">
+                    <div id="searchengine" style="display: flex; justify-content: center;">
                         <div class="box">
                         <img class="image" src="${feature.imgs.mainimg}" alt="${feature.properties.name}" style="border-radius: 20%;">
                         <div class="text">
@@ -205,44 +187,7 @@ function myFunc(){
                         </div>
                     </div>
                     `;
-
-
-//                         <div style="display: flex; justify-content: center;">
-
-
-//                             <div class="box">
-//                                 <img class="image" src="images/skewers.jpg" alt="Image">
-//                             <div class="text">
-//                                 <h3><b>Thai Skewers</b></h3>
-//                                 <p>Limited Time Satay Shrimp Skewers!</p>
-//                                 <p style="font-size: 24px;">0.5 miles</p>
-//                             </div>
-//                             </div>
-
-
-                            
-//                             <img src="${feature.imgs.mainimg}" alt="" style="border-radius: 15px;max-width: 120px;margin: 0.5rem 1rem;">
-//                              <h1 style="text-align: center; display:flex; ">${feature.properties.name}</h1>
-
-//                          <p>${feature.properties.description}</p>
-//                          </div> 
-
-// 2
-
-//                 `;
-
-
-
                 document.getElementById("result").appendChild(divToAdd);
-
-                //  res.append(
-                //         <div style="display: flex; justify-content: center;">
-                //             <img src="${feature.imgs.mainimg}" alt="" style="border-radius: 15px;max-width: 120px;margin: 0.5rem 1rem;">
-                //              <h1 style="text-align: center; display:flex; ">${feature.properties.name}</h1>
-                //             <h2 style="text-align: right; display:flex; ">${feature.properties.category}</h1>
-                //          <p>${feature.properties.description}</p>
-                //          </div> 
-                // `);
 
             }
         }
@@ -272,6 +217,7 @@ document.querySelector(".nav-item").focus();
 <script>
     var feedpop = false;
     var addlocpop = false;
+    var searchpop = false;
     function x(){
         if(!feedpop){
             // make the margin-top 0 with smooth transition
@@ -289,11 +235,20 @@ document.querySelector(".nav-item").focus();
     }
     function addloc(){
         if(!addlocpop){
-            document.getElementById("addlocform").style.margin = "-126vh 10vw 0px 10vw";
+            document.getElementById("addlocform").style.margin = "-130vh 10vw 0px 10vw";
+            document.getElementById("addlocform").style.position = "sticky";
         } else {
-            document.getElementById("addlocform").style.margin = "70px 0 0 0";
+            document.getElementById("addlocform").style.margin = "100vh 0 0 0";
         }
         addlocpop = !addlocpop;
+    }
+    function searcheng(){
+        if(!searchpop){
+            document.getElementById("searchengine").style.marginTop = "-280vh";
+        } else {
+            document.getElementById("searchengine").style.marginTop = "20vh";
+        }
+        searchpop = !searchpop;
     }
 
 let newJson={
