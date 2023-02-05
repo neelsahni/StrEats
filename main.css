@@ -1,7 +1,7 @@
 
 
 body { margin: 0;padding: 0;}
-#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; height: 92vh;}
 .marker {
   background-size: cover;
   width: 50px;
@@ -34,9 +34,21 @@ body { margin: 0;padding: 0;}
     z-index: 10;
     height: 60px;
     display: flex;
+    text-shadow: 0 0 20px black;
     justify-content: center;
+    font-family: sans-serif;
+    margin-bottom: 0px;
 }
-
+#heatmap{
+    position: sticky;
+    top: 0px;
+    z-index: 10;
+    height: 20px;
+    display: flex;
+    text-shadow: 0 0 20px black;
+    justify-content: center;
+    font-family: sans-serif;
+}
 
 nav{
     display: flex;
@@ -93,4 +105,14 @@ nav{
 .mapboxgl-popup-content {
   text-align: center;
   font-family: 'Open Sans', sans-serif;
+  overflow-y: auto;
+  height: 40vh;
+  border-radius: 14px;
+  background-color: #dddddd;
+  box-shadow: 0 0 25px black;
+}
+.popupmenudesc{
+    text-align: center; 
+    display:flex; 
+    align-items: center;
 }

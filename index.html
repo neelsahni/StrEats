@@ -10,8 +10,8 @@
 
 </head>
 <body>
-    <!-- helo -->
     <h1 id="title">StrEat</h1>
+    
     <div id="map"></div>
     <nav>
         <a class="nav-item" href="#">
@@ -57,10 +57,22 @@ for (const feature of geojson.features) {
       .setHTML(
         `<div style="display: flex; justify-content: center;">
             <img src="${feature.imgs.mainimg}" alt="" style="border-radius: 15px;max-width: 120px;margin: 0.5rem 1rem;">
-            <h1 style="text-align: center; display: flex;align-items: center;word-break: break-all;">${feature.properties.name}</h1>
+            <h1 style="text-align: center; display:flex; ">${feature.properties.name}</h1>
         </div>
         <p>${feature.properties.description}</p>
-        `
+        <div class="popupmenu" style="display: flex; justify-content: center; align-items: center;">
+            <img src="${feature.imgs.menuimg[0]}" alt="menuimg" style="border-radius: 15px;max-width: 120px;margin: 0.5rem 1rem;>
+            <h2><p class="popupmenudesc">${feature.imgs.menuname[0]}</p></h2>
+        </div>
+        <div class="popupmenu" style="display: flex; justify-content: center; align-items: center;">
+            <img src="${feature.imgs.menuimg[1]}" alt="menuimg" style="border-radius: 15px;max-width: 120px;margin: 0.5rem 1rem;>
+            <h2><p class="popupmenudesc">${feature.imgs.menuname[1]}</p></h2>
+        </div>
+        <div class="popupmenu" style="display: flex; justify-content: center; align-items: center;">
+            <img src="${feature.imgs.menuimg[2]}" alt="menuimg" style="border-radius: 15px;max-width: 120px;margin: 0.5rem 1rem;>
+            <h2><p class="popupmenudesc">${feature.imgs.menuname[2]}</p></h2>
+        </div>`
+        
       )
   )
   .addTo(map);
@@ -68,12 +80,9 @@ for (const feature of geojson.features) {
 
 
 //navbar js
-feather.replace();
 document.querySelector(".nav-item").focus();
 
 </script>
-
-
 
 </body>
 </html>
